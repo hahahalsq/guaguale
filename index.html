@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>实现一个“刮刮乐”游戏</title>
+        <style type="text/css">
+            .demo {
+                width: 320px;
+                margin: 10px auto 20px auto;
+                min-height: 300px;
+            }
+            .msg {
+                text-align: center;
+                height: 32px;
+                line-height: 32px;
+                font-weight: bold;
+                margin-top: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div class="msg">
+                刮刮下面图片看看什么效果哈哈哈，<a href="javascript:void(0)" id="try_again">再来一次</a>
+            </div>
+            <div class="demo">
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+        <script src="./scrapAward-dev.js"></script>
+        <script>
+            window.onload = function() {
+                let scraAward = new ScrapAward({
+                    height: 570,
+                    // backgroundImageUrl: './suporka_home.jpg',
+                    // backgroundImageUrl: 'C:/Users/LSQ/Desktop/guaguale/suporka_home.jpg',
+                    backgroundImageUrl: 'https://zxpsuper.github.io/Demo/guajiang/p_1.jpg',
+                    coverImage: {
+                        // url: './super.jpg',
+                        // url: 'C:/Users/LSQ/Desktop/guaguale/super.jpg',
+                        url:'https://zxpsuper.github.io/Demo/guajiang/p_0.jpg',
+                        // color: 'red',
+                        width: 428,
+                        height: 570,
+                    },
+                    crossDomain:true,
+                    dataType:'jsonp',
+                    callback: () => {
+                        alert('刮奖结束');
+                    },
+                });
+                document.getElementById('try_again').addEventListener('click', function(e) {
+                    scraAward.restart();
+                });
+            };
+        </script>
+    </body>
+</html>
